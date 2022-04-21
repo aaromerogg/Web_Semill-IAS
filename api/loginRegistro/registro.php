@@ -31,7 +31,7 @@ if ($archivo != '' ) {
 }
 
 $passEncriptada = password_hash($pass, PASSWORD_BCRYPT);
-$ins = $con -> query("INSERT INTO usuarios VALUES(DEFAULT,'$usuario','$email','$passEncriptada','$ruta',0,'','')");
+$ins = $con -> query("INSERT INTO integrantes VALUES('$usuario','$email','$pass','activo','normal')");
 
 if ($ins) {
     echo "success";

@@ -23,11 +23,11 @@ if ($b == 0){
 
 }
 else if ($b == 1){
-    $id = $_POST['id'];
+    $nombre = $_POST['id'];
     $accion = $_POST['accion'];
-    $consulta = mysqli_query($con, "UPDATE usuarios SET estado = $accion WHERE usuarios.id = $id"); 
-    if ($accion == 0){echo "0";}
-    if ($accion == 1){echo "1";}
+    $consulta = mysqli_query($con, "UPDATE integrantes SET estado = $accion WHERE nombre = $nombre"); 
+    if ($accion == 'activo'){echo "activo";}
+    if ($accion == 'inactivo'){echo "inactivo";}
     
 }
 else if ($b == 2){

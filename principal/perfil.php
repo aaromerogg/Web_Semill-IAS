@@ -1,30 +1,49 @@
+<?php
+session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    // $foto = $_SESSION['foto'];
+    $usuario = $_SESSION['user'];
+    $email = $_SESSION['username'];
 
+//   echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
+//   echo "console.log(foto,usuario,email);";
+//   echo "</script>";
+  
+
+} else {
+ header('location:../index.php');
+ exit;
+}
+include '../api/conexion.php';
+?>
+<?php
+    $busqueda = $con->query("SELECT foto FROM informacion WHERE email = '$email' ");
+    if ($f = $busqueda->fetch_assoc()) {
+    $foto = $f['foto'];
+    }
+?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Semill-IAS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <script src="../js/sweetalert2.all.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <meta name="description"
-   content="Pagina web para el manejo interno del semillero">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"/>
 
-<meta name="theme-color" content="#F0DB4F"><!-- meta etiquetas para PWA pinta la pestaña superior de la app-->
-<meta name="MobileOptimized" content="width"><!-- meta etiquetas para PWA-->
-<meta name="HandheldFriendly" content="true"><!-- meta etiquetas para PWA-->
-<meta name="apple-mobile-web-app-capable" content="yes"><!-- meta etiquetas para PWA-->
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- meta etiquetas para PWA-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <?php include '../includes/metadatos.html';?>
+  </head>
 
-<link rel="apple-touch-icon" href="./logo.svg"><!-- meta etiquetas para PWA-->
-<link rel="apple-touch-startup-image" href="./logo.svg">
-<link rel="shortcut icon" type="image/png" href="./img/logo.svg"> <!-- meta etiquetas para PWA-->
+<?php include '../includes/header2.php';?>
 
-<link rel="manifest" href="./manifest.json"> <!-- meta etiquetas para PWA-->
-</head>
-
-<!--<body onload="myFunction()">-->
+<body onload="M.AutoInit()">
 <body >
 
 <main id='app'>
@@ -35,8 +54,11 @@
     <div class="col s12 m12 l12">
       <div class="card">
         <div class="card-content">
-        <img src="img/LogoSemill-IAS.jpeg" width=250>
-          <span class="card-title">Registrarse</span> 
+            <?php
+        echo '<img src="data:image/png;base64,'.base64_encode($foto).'"/>';
+            ?>
+        <!-- <img src="img/LogoSemill-IAS.jpeg" width=250> -->
+          <span class="card-title"><?php echo $usuario ?></span> 
          
           <form id="formRegistro" autocomplete="off" @submit.prevent="registro" enctype="multipart/form-data" >
                 <input type="text" name="usuario" placeholder="Nombre" required pattern="[A-Za-z\s]{1,50}" >
@@ -64,15 +86,15 @@
   </div>
     </div>
     </main>
-
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/sweetalert2.all.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/appLogin.js"></script>
-    <script src="./script.js"></script>
+  
+    <script src="../js/materialize.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/appLogin.js"></script>
+    <script src="../js/imagenes.js"></script>
+
 </body>
 
 </html>

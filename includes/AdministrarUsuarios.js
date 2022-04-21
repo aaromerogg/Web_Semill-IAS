@@ -53,13 +53,13 @@ if (window.acceso == "No"){
       
       $(document).on("click",'#habilitar',function(){
           var id = $(this).data("idh");
-          var accion = 1
+          var accion = 'activo';
           actualizarEstado(id,accion);
       })
       
       $(document).on("click",'#deshabilitar',function(){
           var id = $(this).data("idh");
-          var accion = 0
+          var accion = 'inactivo';
           actualizarEstado(id,accion);
       })
       

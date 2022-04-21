@@ -39,12 +39,12 @@
       <div class="col s12 m12 l12">
         <div class="card">
           <div class="card-content">
-            <img src="img/LogoSemill-IAS.jpeg" width=250>
+            <img src="img/logo_semillias.svg" width=250 style='margin-bottom: 10px; margin-top: 10px'>
             <span class="card-title">Iniciar sesión</span> 
             <a class = "right" style = "font-size:12px" href="RecuperarContraseña.php">¿Olvidó su contraseña?</a>
             <form id="inicioSesion" autocomplete="off" @submit.prevent="login" >
                 <input type="email" name="email" v-model="correo" placeholder="Correo electronico" @blur="validarCorreo2" required  >
-                <input type="password" name="pass" placeholder="Password" required pattern="[A-Za-z0-9]{8,15}" >
+                <input type="password" name="pass" placeholder="Password" required pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]){8,32}" >
                 <input type="submit" value="Entrar" style = "background-color:#1e88e5" class="btn" >
             </form>
           </div>

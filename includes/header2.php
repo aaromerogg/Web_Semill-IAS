@@ -77,12 +77,12 @@ function DatosPerfil(foto,usuario,email){
 
 <?php
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    $foto = $_SESSION['foto'];
+    // $foto = $_SESSION['foto'];
     $usuario = $_SESSION['user'];
     $email = $_SESSION['username'];
-  echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
-  echo "DatosPerfil(foto,usuario,email);";
-  echo "</script>";
+//   echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
+//   echo "DatosPerfil(foto,usuario,email);";
+//   echo "</script>";
 } else {
  header('location:../index.php');
  exit;

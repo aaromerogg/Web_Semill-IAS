@@ -12,12 +12,11 @@ if (isset($_SESSION['tipousuario']) && $_SESSION['tipousuario'] == 'admin') {
   echo "<script>";
   echo "MiFuncionJS();";
   echo "</script>";
-  
 }
 
 include '../api/conexion.php';
 
-$result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query instead
+$result = mysqli_query($con, "SELECT * FROM integrantes"); // using mysqli_query instead
 
 ?>
 
@@ -27,7 +26,7 @@ $result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query in
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NeverasIoT</title>
+    <title>SemillIAS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/materialize.css">
@@ -40,11 +39,19 @@ $result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query in
     <?php include '../includes/metadatos.html';?>
   </head>
 
-<?php include '../includes/header2.php';?>
+<?php include '../includes/header.php';?>
 
 <body onload="M.AutoInit()">
     <br>
-    <main id='app' style = "zoom:88%">
+    <main 
+    <?php
+    if (isset($_SESSION['tipousuario']) && $_SESSION['tipousuario'] == 'admin') {
+        echo "id='app' style = 'zoom:88%'";
+    } else {
+        echo "id='app' style = 'zoom:88%; filter: blur(5px)'";
+    }
+    ?>
+    >
 
 
         <div class="container center">
@@ -52,7 +59,6 @@ $result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query in
             <table id="example" class="responsive-table display" style="width:100%">
             <thead>   
             <tr>
-                    <td>ID</td>
                     <td>Usuario</td>
                     <td>Correo Electrónico</td>
                     <td>Estado</td>
@@ -64,18 +70,18 @@ $result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query in
 	//while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array 
 	while($res = mysqli_fetch_array($result)){
 
-        if ($res['estado']== 1){$res['estado']='Activo';};
-        if ($res['estado']== 0){$res['estado']='Inactivo';};
-        if ($res['tipousuario'] != 'admin'){
+        #if ($res['estado']== 1){$res['estado']='Activo';};
+        #if ($res['estado']== 0){$res['estado']='Inactivo';};
+        if ($res['tipo_usuario'] != 'admin'){
             echo "<tr>";
-		echo "<td>".$res['id']."</td>";
-		echo "<td>".$res['user']."</td>";
+		#echo "<td>".$res['id']."</td>";
+		echo "<td>".$res['nombre']."</td>";
         echo "<td>".$res['email']."</td>";	
         echo "<td>".$res['estado']."</td>";
         echo "<td>
-                <a id = 'habilitar' class='edit modal-trigger'  data-idh='" .$res['id']."' href='javascript:;'>Habilitar</a>
+                <a id = 'habilitar' class='edit modal-trigger'  data-idh='" .$res['nombre']. "' href='javascript:;'>Habilitar</a>
                 <label>&nbsp/&nbsp</label>
-                <a id = 'deshabilitar' class='edit modal-trigger'  data-idh='" .$res['id']."' href='javascript:;'>Deshabilitar</a>
+                <a id = 'deshabilitar' class='edit modal-trigger'  data-idh='" .$res['nombre']. "' href='javascript:;'>Deshabilitar</a>
                 </td>";
         echo "</tr>";
         }
@@ -83,8 +89,7 @@ $result = mysqli_query($con, "SELECT * FROM usuarios"); // using mysqli_query in
 	}
 	
     ?>
-            
-            
+                   
             </tbody>
             </table>
     <br><br>

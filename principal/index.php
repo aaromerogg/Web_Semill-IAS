@@ -2,13 +2,12 @@
 <?php
 session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    $foto = $_SESSION['foto'];
     $usuario = $_SESSION['user'];
     $email = $_SESSION['username'];
 
-  echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
-  echo "console.log(foto,usuario,email);";
-  echo "</script>";
+  #echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
+  #echo "console.log(foto,usuario,email);";
+  #echo "</script>";
   
 
 } else {
@@ -33,7 +32,7 @@ include '../api/conexion.php';
 
 <?php include '../includes/header.php';?>
 
-<body onload="M.AutoInit()">
+<body onload="M.AutoInit()" background="../img/bkt.jpg">
 
 <main id='app' style = "zoom:88%">
 <br><br>
@@ -45,17 +44,13 @@ include '../api/conexion.php';
         <div class="col s12 m12">
           <div class="card">
             <div class="card-image">
-              <img src="../img/temp1.jpg" style="width: 100%">
-              <span class="card-title"><b>ACTAS</b></span>
+              <a href="VisualizarActas.php"><img src="../img/actas.jpg" style="width: 60%; margin:auto;padding-top: 10px;"></a>
             </div>
             <div class="card-content">
               <div class="row">
-                <div class = "col s12 m12"><label style="font-size:14px;color:black;text-align: justify">Descripción</label>
+                <div class = "col s12 m12"><label style="font-size:25px;color:black;text-align: justify">Actas</label>
                 </div>
               </div>
-            </div>
-            <div class="card-action center">
-            <a style="color:#1e88e5" href="Equipos.php?N=1">Mas Información</a>
             </div>
           </div>
         </div>
@@ -67,17 +62,13 @@ include '../api/conexion.php';
         <div class="col s12 m12">
           <div class="card">
             <div class="card-image">
-              <img src="../img/temp1.jpg" style="width: 100%">
-              <span class="card-title"><b>CALENDARIO</b></span>
+            <a href="calendario.php"><img src="../img/calendario.jpg" style="width: 60%; margin:auto;padding-top: 10px;"></a>
             </div>
             <div class="card-content">
               <div class="row">
-                <div class = "col s12 m12"><label style="font-size:14px;color:black;text-align: justify">Descripción</label>
+                <div class = "col s12 m12"><label style="font-size:25px;color:black;text-align: justify">Calendario</label>
                 </div>
               </div>
-            </div>
-            <div class="card-action center">
-            <a style="color:#1e88e5" href="Equipos.php?N=1">Mas Información</a>
             </div>
           </div>
         </div>
@@ -89,17 +80,13 @@ include '../api/conexion.php';
         <div class="col s12 m12">
           <div class="card">
             <div class="card-image">
-              <img src="../img/temp1.jpg" style="width: 100%">
-              <span class="card-title"><b>PERFIL</b></span>
+            <a href="perfil.php"><img src="../img/img_perfil.jpg" style="width: 60%; margin:auto;padding-top: 10px;"></a>
             </div>
             <div class="card-content">
               <div class="row">
-                <div class = "col s12 m12"><label style="font-size:14px;color:black;text-align: justify">Descripción</label>
+                <div class = "col s12 m12"><label style="font-size:25px;color:black;text-align: justify">Perfil</label>
                 </div>
               </div>
-            </div>
-            <div class="card-action center">
-            <a style="color:#1e88e5" href="Equipos.php?N=1">Mas Información</a>
             </div>
           </div>
         </div>

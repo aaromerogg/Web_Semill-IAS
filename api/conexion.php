@@ -1,5 +1,6 @@
 <?php @session_start();
-$con = new mysqli('34.203.1.178','neverasiot2','neverasiot','neveracvd');
+#define ("DB_HOST", "localhost");
+$con = new mysqli('localhost','root','SemillIAS','semillias');
 if ($con->connect_errno) {
     die("La conexion no pudo establecerse");
 }

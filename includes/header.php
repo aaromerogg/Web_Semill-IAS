@@ -1,3 +1,19 @@
+<?php
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    // $foto = $_SESSION['foto'];
+    $usuario = $_SESSION['user'];
+    $email = $_SESSION['username'];
+//   echo("<script>var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
+//   echo "DatosPerfil(foto,usuario,email);";
+//   echo "</script>";
+} else {
+ header('location:../index.php');
+ exit;
+}
+include '../api/conexion.php';
+?>
+
+
 <header>
   <div class="navbar-fixed" style = "zoom:88%">
     <nav class="navbar blue darken-1">
@@ -24,8 +40,8 @@
           <img src="../img/fondo2.png" alt="">
         </div>
         <a href="#"><img id = "Foto" src="../api/loginRegistro/foto_perfil/Jefferson1004.jpg" alt="" class="circle"></a>
-        <a href="#"><span id ="Usuario" class="name white-text">Jefferson Sarmiento</span></a>
-        <a href="#"><span id="Email" class="email white-text">urneveras@gmail.com</span></a>
+        <a href="#"><span id ="Usuario" class="name white-text"><?php echo $usuario; ?></span></a>
+        <a href="#"><span id="Email" class="email white-text"><?php echo $email; ?></span></a>
       </div>
     </li>
     
@@ -40,6 +56,7 @@
 </header>
 
 
+
 <script>
 
   function DatosPerfil(foto,usuario,email){  
@@ -50,20 +67,6 @@
   }
 </script>
 
-<?php
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    $foto = $_SESSION['foto'];
-    $usuario = $_SESSION['user'];
-    $email = $_SESSION['username'];
-  echo("<script>var foto = " . json_encode($foto) . ";var usuario = " . json_encode($usuario) . ";var email = " . json_encode($email) . ";");
-  echo "DatosPerfil(foto,usuario,email);";
-  echo "</script>";
-} else {
- header('location:../index.php');
- exit;
-}
-include '../api/conexion.php';
-?>
 
 <script>
 
